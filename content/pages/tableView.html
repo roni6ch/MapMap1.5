@@ -1,0 +1,54 @@
+<div class="tableViewWrapper " ng-init="vm.init();vm.initTableViewPage();vm.initContent()">
+
+    <!-- search Input -->
+    <div class="searchBox row container-fluid">
+        <div class="col-sm-2 right no-padding">
+            <div class="input-field">
+                <input class="mapsAutoComplete" ng-blur="vm.searchNewAddress()" ng-model="vm.newAddress" vs-autocomplete-validator="vs-street-address" vs-google-autocomplete="autoCompleteOptions" name="address" type="text"><i class="material-icons prefix">create</i>
+
+            </div>
+        </div>
+        <room-type></room-type>
+        <room-num></room-num>
+        <rz-slider min="{{vm.rzslider[0] || 2000}}" max="{{vm.rzslider[1] || 6000}}"></rz-slider>
+        <div class="col-sm-2 right no-padding"><a class=" modal-trigger advancedFilterBT" href="#advancedFilter">סינון מתקדם</a></div>
+        <div class="col-sm-1 right no-padding hide-on-small-only"><a class="displayAsTable" href="#!searchZone">הצג כמפה</a></div>
+
+        <span class="printTableBT" ng-click="vm.printTable()"><img ng-src="content/images/icons/printer.png" /></span>
+    </div>
+
+    <table class="table table-sm table-bordered tableView hover " cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>מועדפים</th>
+            <th>חדרים</th>
+            <th scope="col">כתובת</th>
+            <th scope="col">מחיר</th>
+            <th scope="col">סוג נכס</th>
+            <th scope="col">תאריך כניסה</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="res in vm.searchResults.results" ng-if="vm.checkResults(res)" ng-click="vm.openApartmentModal(res.id)">
+            <td>
+                <img ng-src="{{res.favorite ? 'content/images/icons/heart-full.png' : 'content/images/icons/heart.png'}}" class="heart" ng-click="vm.favorite(res,$event);  $event.stopPropagation();" />
+            </td>
+            <td>{{res.apartment.rooms}}</td>
+            <td>{{res.apartment.location}}</td>
+            <td>{{res.apartment.price}}</td>
+            <td>{{res.apartment.apartmentType}}</td>
+            <td ng-if="res.apartment.immediate_entrance">מיידי</td>
+            <td ng-if="!res.apartment.immediate_entrance">{{res.apartment.entrence_date}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Modal Structure -->
+<div id="apartmentModal" class="modal bottom-sheet">
+    <div ng-include="'content/pages/apartmentModal.html'"></div>
+</div>
+
+<!-- Modal Structure -->
+<div id="advancedFilter" class="modal bottom-sheet">
+    <div ng-include="'content/pages/advencedFilterModal.html'"></div>
+</div>

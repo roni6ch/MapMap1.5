@@ -1,0 +1,75 @@
+<div class="apartmentModalWrapper">
+
+    <div class="apartmentModal modal modal-fixed-footer open">
+
+        <div class="apartmentModalChatWrapper" ng-if="!vm.isMobile()">
+            <h3>Chat</h3>
+            <div class="apartmentModalChat">
+
+
+
+                <input type='text' class="form-control" placeholder="Write..." />
+            </div>
+
+        </div>
+
+        <div class="modal-content">
+
+            <div class="carousel carousel-slider center inner" data-indicators="true" id="modalImage">
+                <div class="carousel-item white-text list-inline gallery " ng-repeat="apartmentImg in vm.apartment.images">
+                    <img class="ns-img" ng-src="{{apartmentImg}}">
+
+                </div>
+            </div>
+            <div class="markerCarouselDetails row">
+                <div class="col-8">
+                    <h5><span>{{vm.apartment.apartment.apartmentType}}</span> , <span>{{vm.apartment.apartment.price}}</span> <span><img src="content/images/icons/coins/{{vm.coin}}.png" /></span> </h5>
+                    <h6>{{vm.apartment.apartment.location}}</h6>
+
+                    <p> <span>תיאור: </span>{{vm.apartment.apartment.info}}</p>
+
+                    <p><span>קומה: </span> {{vm.apartment.apartment.floor}} <img src="content/images/icons/floor.png" />
+                        <span>חדרים: </span>{{vm.apartment.apartment.rooms}} <img src="content/images/icons/rooms.png" />
+                        <span>שירותים: </span>{{vm.apartment.apartment.toilets}}<img src="content/images/icons/toilets.png" />
+                    </p>
+
+                    <img src="content/images/icons/size.png" /> <span>גודל: </span> {{vm.apartment.apartment.size}}
+                    <img src="content/images/icons/parking.png" /> <span>חניה: </span>{{vm.apartment.apartment.parking}}
+                    </p>
+                    <span><span>כניסה: </span>{{vm.apartment.apartment.entrence_date}} <img src="content/images/icons/entrence_date.png" /></span>
+                </div>
+
+                <div class="col-4 markerOwnerContact">
+                    <h5><span>צור קשר</span></h5>
+                    <h6><img src="content/images/icons/owner.png" /><span>{{vm.apartment.name}}</span></h6>
+                    <h6><img src="content/images/icons/email.png" /><span>{{vm.apartment.email}}</span></h6>
+                    <h6><img src="content/images/icons/phone.png" /><p  class="ownerPhone" ng-repeat="apartmentPhone in vm.apartment.phones"><a href="tel:{{apartmentPhone}}">{{apartmentPhone.split("972")[1]}}</a></p></h6>
+                    <!-- NOTES -->
+                    <div class="input-field col s12">
+                        <textarea id="notes" class="materialize-textarea notes" ng-model="vm.note" ng-blur="vm.saveNote(vm.apartment.id)"></textarea>
+                        <label for="notes">הערות אישיות</label>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer row">
+
+            <div class="col s6"><span>שמירה </span>
+                <span class="heart"><img ng-src="{{vm.apartment.favorite ? 'content/images/icons/heart-full.png' : 'content/images/icons/heart.png'}}"
+                                         ng-click="vm.favorite(vm.apartment,$event);" /></span>
+                <span ng-click="vm.calendar(vm.apartment)"><img ng-src="content/images/icons/calendar.png" class="modal-action modal-close waves-effect"></span>
+            </div>
+            <div class="col s6 left-align">
+                <span>שיתוף  </span>
+                <span ng-click="vm.shareFacebook(vm.apartment)" class="fb-share-button"><img ng-src="content/images/icons/facebook.png" /></span>
+                <span ng-click="vm.sendWhatsapp(vm.apartment.phones[0])"><img ng-src="content/images/icons/whatsapp.png" /></span>
+                <span><a ng-click="vm.sendMail(vm.apartment)" href="mailto:{{vm.apartment.email}}&subject=This%20is%20the%20subject&body=This%20is%20the%20body"><img ng-src="content/images/icons/gmail.png" /></a></span>
+                <span class="hide-on-large-only"><a ng-click="vm.openWaze(vm.apartment)"><img ng-src="content/images/icons/waze-icon.png" /></a></span>
+                <span ng-click="vm.print()"><img ng-src="content/images/icons/printer.png" /></span>
+            </div>
+        </div>
+    </div>
+</div>

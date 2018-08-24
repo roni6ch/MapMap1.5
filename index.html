@@ -1,0 +1,260 @@
+<!-- PIWIK: http://roni.pe.hu/mapmap/piwik/ -->
+
+<!doctype html>
+<html lang="en" ng-app="mapmapApp">
+
+<head>
+	<!-- Google Tag Manager -->
+	<script>
+		(function(w, d, s, l, i) {
+			w[l] = w[l] || [];
+			w[l].push({
+				'gtm.start': new Date().getTime(),
+				event: 'gtm.js'
+			});
+			var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != 'dataLayer' ? '&l=' + l : '';
+			j.async = true;
+			j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+			f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-MVG6SJL');
+	</script>
+	<!-- End Google Tag Manager -->
+
+	<!-- Global site tag (gtag.js) - Google Analytics
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112419434-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-112419434-1');
+	</script>-->
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-112419434-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+	<title>MapMap</title>
+	<link rel="icon" href="content/images/icons/icon.png">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Facebook Share-->
+	<meta property="og:url" content="http://roni.pe.hu/mapmap/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="MapMap" />
+	<meta property="og:description" content="Find your home!" />
+	<meta property="og:image" content="content/images/icons/icon.png" />
+
+	<!-- JS -->
+	<script src="content/js/jquery-3.2.1.min.js"></script>
+	<script src="content/js/popper.min.js"></script>
+	<script src="content/js/bootstrap.min.js"></script>
+	<script src="content/js/materialize.min.js"></script>
+	<script src="content/js/underscore.js"></script>
+	<script src="content/js/jquery.dataTables.min.js"></script>
+	<!-- CSS -->
+	<link href="content/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="content/css/owl.carousel.min.css" rel="stylesheet" />
+	<link href="content/css/materialize.min.css" rel="stylesheet">
+	<link href="content/css/rzslider.min.css" rel="stylesheet" />
+	<link href="content/css/hover-min.css" rel="stylesheet" />
+	<link href="content/css/imageuploadify.min.css" rel="stylesheet" />
+	<link href="content/css/jquery.dataTables.min.css" rel="stylesheet" />
+	<link href="content/css/fonts.css" type="text/css" rel="stylesheet" />
+	<link href="content/css/other.css" type="text/css" rel="stylesheet" />
+	<link href="content/css/style.css" type="text/css" rel="stylesheet" />
+	<!-- GOOGLE Login Button-->
+	<meta name="google-signin-client_id" content="1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<!-- Matomo -->
+	<script type="text/javascript">
+		var _paq = _paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+			var u = "//roni.pe.hu/mapmap/piwik/";
+			_paq.push(['setTrackerUrl', u + 'piwik.php']);
+			_paq.push(['setSiteId', '1']);
+			var d = document,
+					g = d.createElement('script'),
+					s = d.getElementsByTagName('script')[0];
+			g.type = 'text/javascript';
+			g.async = true;
+			g.defer = true;
+			g.src = u + 'piwik.js';
+			s.parentNode.insertBefore(g, s);
+		})();
+	</script>
+	<!-- End Matomo Code -->
+
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+	<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVG6SJL" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- facebook  share-->
+<script>
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : '333762270434028',
+			cookie     : true,
+			xfbml      : true,
+			version    : 'v2.11'
+		});
+
+	};
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+
+</script>
+<div class="wrapper" ng-controller="indexController as vm">
+	<!------------------------------------------------------------------------------------------------------------>
+	<!---------------------------------------------------- Header ------------------------------------------------>
+	<!------------------------------------------------------------------------------------------------------------>
+	<nav>
+		<div class="nav-wrapper">
+
+			<!------------------------------------------------------------------------------------------------------------>
+			<!------------------------------------------------------------------------------------------------------------>
+			<!------------------------------------------------------------------------------------------------------------>
+			<!----------------------------------------------  Large view ------------------------------------------------>
+			<!------------------------------------------------------------------------------------------------------------>
+			<!------------------------------------------------------------------------------------------------------------>
+			<div class="hide-on-med-and-down">
+				<ul class="topNav right">
+					<li><a ng-click="vm.addSiteToFav('title of the page', 'http://www.domain.com')"  class="bookmark" >  <i class="material-icons">star_border</i>
+					</a></li>
+					<li id="publishNewHome"><a class=" modal-trigger " href="#publishModal"><span>פרסם מודעה</span></a></li>
+					<li id="rentButton"><a class="selectRentOrBuy active" href="#">להשכרה</a></li>
+					<li id="buyButton"><a class="selectRentOrBuy" href="#">למכירה</a></li>
+					<li id="logo">
+						<a href="#/">
+							<span>MapMap <img src="content/images/icons/icon.png"  class="logoImg" /></span>
+						</a>
+					</li>
+				</ul>
+				<google-plus-signin class="loginBT" google-sign-in-dropdown data-theme="dark" clientid="1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com" autorender="true"></google-plus-signin>
+				<div class="btn btn-secondary userProfile" data-container="body" data-toggle="popover" data-placement="bottom">
+					<img src="">
+				</div>
+
+			</div>
+
+			<!------------------------------------------------------------------------------------------------------------>
+			<!------------------------------------------------------------------------------------------------------------>
+			<!------------------------------------------------------------------------------------------------------------>
+			<!--------------------------------------------- Medium and down ---------------------------------------------->
+			<!------------------------------------------------------------------------------------------------------------>
+			<!------------------------------------------------------------------------------------------------------------>
+			<div class="hide-on-large-only">
+				<a href="#" data-activates="mobile-hamburger" class="button-collapse">
+					<i class="material-icons">menu</i>
+				</a>
+				<a href="#/" class="right">
+					<!-- <i class="Large material-icons ">home</i> -->
+					<img src="content/images/icons/icon.png" class="logoImg" />
+				</a>
+				<ul id="mobile-hamburger" class="side-nav">
+					<li>
+						<div class="user-view">
+							<div class="background">
+								<img ng-src="content/images/hamburgerBG.jpg">
+							</div>
+							<google-plus-signin class="loginBT" google-sign-in-dropdown data-theme="dark" clientid="1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com" autorender="true"></google-plus-signin>
+							<div class="btn btn-secondary userProfile">
+								<img src="">
+							</div>
+							<!--
+                    <a href="#"><img class="circle mobileProfileImg" src=""></a>-->
+							<div class="mobileNavDetails">
+								<p><span class="black-text name"></span></p>
+								<p><span class="black-text email"></span></p>
+							</div>
+						</div>
+					</li>
+					<li class="mobileNavOptions"><a class=" modal-trigger " href="#publishModal"><i class="material-icons">publish</i>פרסם מודעה</a></li>
+					<li class="mobileNavOptions" ng-if="page=='map'"><a class="modal-trigger advancedFilterBT" href="#!tableView"><i class="material-icons">list</i>הצג כטבלה</a></li>
+					<li class="mobileNavOptions" ng-if="page=='table'"><a class="modal-trigger advancedFilterBT" href="#!searchZone"><i class="material-icons">map</i>הצג כמפה</a></li>
+
+					<li class="mobileNavOptions"><a  class="searchZoneFilterBT mobileFilter"  data-activates="slide-in-filters"><i><img src="content/images/icons/funnel.png" /></i> סינון</a></li>
+
+
+
+					<li class="mobileNavOptions" ng-if="page=='map' || page=='table'"><a class="modal-trigger advancedFilterBT" href="#advancedFilter"><i class="material-icons">filter_list</i>סינון מתקדם</a></li>
+					<li class="mobileNavOptions"><a class=" modal-trigger " href="#/" ng-click="vm.signOut()"><i class="material-icons">exit_to_app</i>התנתק</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- loader animate -->
+	<div class="sk-cube-grid">
+		<div class="sk-cube sk-cube1"></div>
+		<div class="sk-cube sk-cube2"></div>
+		<div class="sk-cube sk-cube3"></div>
+		<div class="sk-cube sk-cube4"></div>
+		<div class="sk-cube sk-cube5"></div>
+		<div class="sk-cube sk-cube6"></div>
+		<div class="sk-cube sk-cube7"></div>
+		<div class="sk-cube sk-cube8"></div>
+		<div class="sk-cube sk-cube9"></div>
+	</div>
+
+	<!-- view change -->
+	<div ng-view></div>
+
+</div>
+
+<!-- printer -->
+<div id="hiddenPrint"></div>
+
+<!-- Modal Publish -->
+<div id="publishModal" class="modal">
+	<div ng-include="'content/pages/publishNewHouseModal.html'"></div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&language=he&key=AIzaSyCG43sbbdLsGywMwY0T7-1yOoKVDGfnbsk"></script>
+<script src="content/js/angular.min.js"></script>
+<script src="content/js/angular-route.min.js"></script>
+<script src="content/js/vs-google-autocomplete.js"></script>
+<script src="content/js/ngStorage.min.js"></script>
+<script src="content/js/rzslider.min.js"></script>
+<script src="content/js/owl.carousel.min.js"></script>
+<script src="content/js/imageuploadify.js"></script>
+<script src="content/js/angular-materialize.min.js"></script>
+<script src="content/js/site.js"></script>
+<script src="content/js/controllers/main.js"></script>
+<script src="content/js/controllers/publishNewHouse.js"></script>
+<script src="content/js/directives.js"></script>
+<script src="content/js/google-plus-signin.js"></script>
+
+
+</body>
+
+</html>

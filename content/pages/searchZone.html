@@ -1,0 +1,117 @@
+<div class="searchZoneWrapper " ng-init="vm.init();vm.initGoogleMap()">
+
+    <!-- slide in filters menu -->
+    <ul id="slide-in-filters" class="sidenav filtersSideModal">
+        <li class="filtersBG"><div class="user-view">
+            <div class="background">
+                <img src="content/images/filtersBG.png" style="    width: 250px;">
+            </div>
+        </div></li>
+
+        <li> <room-type></room-type> </li>
+        <li>     <room-num></room-num> </li>
+        <li>     <rz-slider min="{{vm.rzslider[0] || 2000}}" max="{{vm.rzslider[1] || 6000}}"></rz-slider> </li>
+        <li>     <div class="center-align"><a class=" modal-trigger advancedFilterBT" href="#advancedFilter">סינון מתקדם</a></div> </li>
+     <!--   <li>     <div class="center-align"><a class="displayAsTable" href="#!tableView">הצג כטבלה</a></div> </li>
+        <li>     <div class="center-align"><a class="advancedFilterBT closeModal">שמור</a></div> </li>-->
+        </li>
+    </ul>
+
+
+    <!-- slide in results -->
+    <div class="searchZoneCards side-nav" id="slide-out">
+
+            <div class="background">
+                <img src="content/images/filterApartments.png" style="    width:100%;">
+            </div>
+
+        <div class="searchZoneSideWrapper">
+            <div class="resultLength">
+                <div class="dropdown" ng-init="vm.orderByName='מחיר'">
+                    <span>מציג </span><span><b> {{vm.resultsLength}}</b> </span><span> תוצאות  </span><span>ממוינות לפי </span>
+                    <button class="dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{vm.orderByName}}
+                    </button>
+                    <div id="dropdownOrderBySelectMenu" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button" ng-click="vm.orderBy='apartment.price'; vm.orderByName='מחיר'"> <img src="content/images/icons/price.png" /><span>מחיר</span></button>
+                        <button class="dropdown-item" type="button" ng-click="vm.orderBy='apartment.entrence_date'; vm.orderByName='תאריך כניסה'"><img src="content/images/icons/entrence_date.png" /><span>תאריך כניסה</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-repeat="result in vm.searchResults.results | orderBy : vm.orderBy" ng-if="vm.checkResults(result)" ng-click="vm.goToMarker(result)">
+
+                <div class="card horizontal hvr-bounce-to-left">
+                    <div class="card-image">
+                        <img ng-src="{{result.images[0] ? result.images[0] : 'content/images/no_image.jpg'}}" class="apartmentImg">
+
+                        <img ng-src="{{result.favorite ? 'content/images/icons/heart-full.png' : 'content/images/icons/heart.png'}}" class="heart" ng-click="vm.favorite(result,$event)" />
+                        <span class="apartmentCardPrice">{{result.apartment.price}} <img src="content/images/icons/price.png" /></span>
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <p>
+                                <span>{{result.apartment.floor}} <img src="content/images/icons/floor.png" /></span>
+                                <span>{{result.apartment.rooms}} <img src="content/images/icons/rooms.png" /></span>
+                            </p>
+                            <p>
+                                <span>{{result.apartment.toilets}}  <img src="content/images/icons/toilets.png" /></span>
+                                <span>{{result.apartment.size}} <img src="content/images/icons/size.png" /></span>
+                                <span>{{result.apartment.parking}} <img src="content/images/icons/parking.png" /></span>
+                            </p>
+                            <span>{{result.apartment.entrence_date}} <img src="content/images/icons/entrence_date.png" /></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------------------>
+   <!-- search Results -->
+    <!------------------>
+    <div class="searchZoneResults row">
+
+
+
+        <div class="col s 10 no-padding">
+            <!-- search -->
+            <div class="searchField">
+               <p class="resultsInfo"> <span>מציג </span><span><b> {{vm.resultsLength}}</b> </span><span> תוצאות  </span></p>
+            <input class="mapsAutoComplete" ng-blur="vm.searchNewAddress()" ng-model="vm.newAddress" vs-autocomplete-validator="vs-street-address" vs-google-autocomplete="autoCompleteOptions" name="address" type="text">
+
+                <button ng-click="vm.search()"
+                        class="btn-search btn  blue lighten-1 hvr-sweep-to-left">חפש</button>
+
+                <!-- Side nav button -->
+                <div class="searchZoneFilterBT filtersSideModalBT filters" data-activates="slide-in-filters" >
+
+                    <img src="content/images/icons/funnel.png" />
+                </div>
+
+                <div class="searchZoneCardsBT searchZoneNavCards" data-activates="slide-out">
+
+                    <img src="content/images/icons/house.png" />
+                </div>
+            </div>
+
+            <img src="content/images/icons/location.png" ng-click="vm.getLocation();" class="locateMeBT" />
+
+            <div id="map"></div>
+
+
+
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="advancedFilter" class="modal bottom-sheet">
+        <div ng-include="'content/pages/advencedFilterModal.html'"></div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="apartmentModal" class="modal bottom-sheet">
+        <div ng-include="'content/pages/apartmentModal.html'"></div>
+    </div>
+
+</div>

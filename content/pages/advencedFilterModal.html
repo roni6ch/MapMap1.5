@@ -1,0 +1,30 @@
+<div class="advencedFilterModalWrapper">
+    <div class="modal-content">
+        <h6>סינון מתקדם</h6>
+    </div>
+    <div class="modal-footer">
+        <div class="row container-fluid">
+            <div class="col-sm-8">
+
+                <div ng-repeat="filter in vm.advancedFilter" class="advancedFilter">
+
+                    <div class="switch">
+                        <label>
+                            <div class="switchIcon"><img ng-src="content/images/icons/{{filter.filterName}}.png" /></div>
+                            <span>{{filter.name}}</span>
+                            <input type="checkbox"   ng-click="vm.changeFilter($index)">
+                            <span class="lever"></span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-4 lovedApartments">
+                <button ng-click="vm.filterFavorites()" class="btn blue lighten-1 hvr-sweep-to-left">
+                    <span>הצג מודעות שאהבתי</span>
+                    <img ng-src="content/images/icons/heart{{vm.favFilterImg?'-full':''}}.png" class="heart">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

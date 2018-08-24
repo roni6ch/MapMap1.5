@@ -1,0 +1,90 @@
+<!-- Modal Structure -->
+<div id="publishNewHouseModal" ng-controller="publishNewHouseController as vm" ng-init="vm.initPublishModal()">
+    <div class="modal-content">
+        <h6>פרסם נכס חדש</h6>
+        <hr>
+        <div class="row">
+            <form class="col s12" name="vm.form">
+                <div class="row">
+
+                    <div class="input-field col s4 ">
+                        <label for="icon_telephone">: טלפון 2</label>
+                        <i class="material-icons prefix">phone</i>
+                        <input id="icon_telephone" type="text" data-length="15" min="10" max="15" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9-]+.{9,}" class="validate" ng-model="vm.publisherNumber2">
+                    </div>
+
+                    <div class="input-field col s4 ">
+                        <label for="icon_telephone">: טלפון</label>
+                        <i class="material-icons prefix">phone</i>
+                        <input id="icon_telephone" type="text" data-length="15" min="10" max="15" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9-]+.{9,}" class="validate" required ng-model="vm.publisherNumber">
+                    </div>
+
+                    <div class="input-field col s4 ">
+                        <div class="position-relative">
+                            <label for="icon_prefix">: שם בעלים</label>
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="icon_prefix" type="text" class="validate" required ng-model="vm.publisherName">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="input-field col s3 ">
+                        <i class="material-icons prefix">date_range</i>
+                        <input type="text" class="datepicker" placeholder="בחר תאריך כניסה" ng-model="vm.entranceDate">
+
+                    </div>
+
+                    <div class="input-field col s3 ">
+                        <label for="email" data-error="wrong" data-success="right">Email</label>
+                        <i class="material-icons prefix">email</i>
+                        <input id="email" type="email" class="validate" data-length="30" ng-model="vm.publisherEmail">
+                    </div>
+                    <div class="input-field col s3 ">
+                        <label for="price" data-error="wrong" data-success="right">:מחיר</label>
+                        <i class="material-icons prefix"><img src="content/images/icons/coins/ils.png" /></i>
+
+                        <input id="price" type="number" data-length="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9,.]{3,10}" class="validate" required ng-model="vm.publisherPrice">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">create</i>
+                        <textarea id="apartmentInfoDetails" class="materialize-textarea validate" data-length="250" ng-model="vm.publisherInfo"></textarea>
+                        <label for="apartmentInfoDetails">...על הדירה</label>
+                    </div>
+                </div>
+
+                <!-- upload Images -->
+                <div class="row">
+                    <input type="file" class="uploadFiles" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
+                </div>
+
+                <!-- advancedFilter -->
+                <div class="row">
+                    <div ng-repeat="filter in vm.advancedFilter" class="advancedFilter col s12">
+                        <div class="switch">
+                            <label>
+                                <div class="switchIcon"><img ng-src="content/images/icons/{{filter.filterName}}.png" /></div>
+                                <span>{{filter.name}}</span>
+                                <input type="checkbox" ng-click="vm.changeFilter($index)" ng-model="vm.filter[$index]">
+                                <span class="lever"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-footer">
+                    <button class="btn left" type="button" ng-click="vm.publishNewApartment(vm.form)"><span style="pointer-events: initial;">
+פרסם מודעה
+      </span></button>
+                    <button class="btn left" type="button"><span style="pointer-events: initial;">
+ביטול
+      </span></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
